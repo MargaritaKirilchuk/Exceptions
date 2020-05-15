@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Book;
 import ru.netology.domain.Product;
+import ru.netology.exception.NotFoundException;
 import ru.netology.manager.ProductManager;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,7 +22,7 @@ class ProductRepositoryBookTest {
     }
 
     @Test
-    public void ShouldRemoveIfExist(){
+    public void shouldRemoveIfExist(){
         repository.removeById(1);
 
         Product[] actual = repository.findAll();
@@ -31,9 +32,8 @@ class ProductRepositoryBookTest {
     }
 
     @Test
-    public void ShouldRemoveIfNoExist(){
-
-        assertThrows(RuntimeException.class,()->repository.removeById(3));
+    public void shouldRemoveIfNoExist(){
+        assertThrows(NotFoundException.class,()->repository.removeById(3));
 
     }
 
